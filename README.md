@@ -13,9 +13,9 @@ Knappen **"Visa varför sidan ser ut så här"** nere till höger visar research
 | --- | --- | --- |
 | Huvudfilmen | Referensfilm (Dext) | Byt `data-video` på `.player` till er egen YouTube- eller Vimeo-embed |
 | Kundporträtt | Referensfilm | Byt `data-video` på `.vid-mini` |
-| Citat och porträtt | Text inom hakparentes | Riktiga citat från testgruppen, med lov |
-| "Används redan av 14 frilansare" | Påhittad siffra | Riktig siffra eller ta bort |
-| Foto på grundarna | Randig yta | Eget foto, gärna från en inspelning |
+| Citat, namn och porträtt | Exempelcitat med påhittade namn och Freepik-bilder, märkta "Exempel" | Riktiga citat från testgruppen, med lov |
+| "Används redan av 14 frilansare" | Påhittad siffra och Freepik-bilder, märkt "Exempel" | Riktig siffra eller ta bort |
+| Filmrutor | Freepik-bilder som stillbild | Egen stillbild ur filmen |
 | Skärmbilder | Ritade i HTML | Riktiga skärmbilder ur appens testläge |
 | Pris 59/79 kr i månaden | Förslag | Beslut om prismodell |
 | support@pocketwiz.se | Påhittad adress | Riktig adress och domän |
