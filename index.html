@@ -74,7 +74,7 @@
   body{overflow-x:clip}
 
   /* Demon: kvitto blir utlägg */
-  .demo{position:relative;height:560px}
+  .demo{position:relative;height:600px}
   .receipt{position:absolute;left:0;top:28px;width:236px;background:var(--white);font-family:var(--mono);font-size:12.5px;line-height:1.5;color:#2b2b2b;padding:22px 20px 30px;transform:rotate(-4deg);box-shadow:0 1px 0 rgba(21,32,46,.06),0 18px 40px -18px rgba(21,32,46,.35);
     -webkit-mask:linear-gradient(#000,#000) top/100% calc(100% - 10px) no-repeat, radial-gradient(circle 6px at 8px 100%,transparent 6px,#000 6.5px) bottom left/16px 10px repeat-x;
             mask:linear-gradient(#000,#000) top/100% calc(100% - 10px) no-repeat, radial-gradient(circle 6px at 8px 100%,transparent 6px,#000 6.5px) bottom left/16px 10px repeat-x}
@@ -84,7 +84,7 @@
   .receipt b{font-weight:500}
   .scan{position:absolute;left:-6px;right:-6px;height:3px;top:0;background:var(--copper);box-shadow:0 0 18px 4px rgba(181,102,46,.45);opacity:0}
   .hl{border-radius:2px;transition:background .3s}
-  .card{position:absolute;right:0;top:110px;width:330px;background:var(--white);border-radius:var(--radius-m);box-shadow:0 0 0 1px rgba(21,32,46,.08),0 30px 60px -30px rgba(21,32,46,.45);overflow:hidden;font-size:14px}
+  .card{position:absolute;right:0;top:56px;width:330px;background:var(--white);border-radius:var(--radius-m);box-shadow:0 0 0 1px rgba(21,32,46,.08),0 30px 60px -30px rgba(21,32,46,.45);overflow:hidden;font-size:14px}
   .win{display:flex;gap:6px;padding:12px 14px;border-bottom:1px solid #eceee9;align-items:center}
   .win i{width:10px;height:10px;border-radius:50%;background:#e3e5e0}
   .win span{margin-left:8px;font-size:12.5px;color:var(--muted)}
@@ -92,7 +92,9 @@
   .field{display:grid;grid-template-columns:92px 1fr;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid #f0f1ee}
   .field label{color:var(--muted);font-size:13px}
   .val{font-weight:500;min-height:20px;position:relative}
-  .split{margin-top:12px;border-radius:8px;background:#f6f7f4;padding:10px 12px}
+  .status{display:flex;align-items:center;gap:8px;margin:0 0 6px;color:var(--ok);font-weight:600;font-size:13.5px}
+  .status span{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+  .split{margin:4px 0 6px;border-radius:8px;background:#f6f7f4;padding:10px 12px}
   .split .row{display:flex;justify-content:space-between;padding:4px 0;font-variant-numeric:tabular-nums}
   .split .row small{color:var(--muted);font-size:12.5px}
   .tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--copper-soft);color:var(--copper-deep)}
@@ -100,7 +102,7 @@
   .switch{width:34px;height:20px;border-radius:999px;background:var(--ok);position:relative}
   .switch:after{content:"";position:absolute;right:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff}
   .card .btn-create{margin-top:14px;width:100%;justify-content:center;font-size:15px;padding:11px}
-  .demo-caption{position:absolute;left:0;bottom:0;font-size:14px;color:var(--muted);display:flex;gap:14px;align-items:center}
+  .demo-caption{position:absolute;left:0;bottom:0;max-width:230px;font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center}
   .replay{font:inherit;font-size:14px;background:none;border:0;color:var(--copper-deep);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:0}
 
   /* Animationen körs en gång vid sidladdning */
@@ -153,6 +155,8 @@
   .ln .m{color:var(--muted)}
   .pill-ok{white-space:nowrap;font-size:12px;font-weight:600;color:var(--ok);background:#e4f1ea;padding:2px 8px;border-radius:999px}
   .pill-warn{white-space:nowrap;font-size:12px;font-weight:600;color:#9a3b1f;background:#f7e1d8;padding:2px 8px;border-radius:999px}
+  .screen img{width:100%;height:auto;display:block;border-radius:var(--radius-m);box-shadow:0 0 0 1px rgba(21,32,46,.08),0 24px 50px -30px rgba(21,32,46,.45)}
+  .screen figcaption{margin-top:12px;font-size:15px;color:var(--muted)}
   .compare{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .compare .shot{padding:18px}
   .compare h4{margin:0 0 10px;font-size:14px;color:var(--muted);font-weight:500}
@@ -370,18 +374,20 @@
       </div>
 
       <div class="card" role="img" aria-label="Utlägget som PocketWiz fyller i">
-        <div class="win"><i></i><i></i><i></i><span>Inkorg · nytt kvitto</span></div>
+        <div class="win"><i></i><i></i><i></i><span>Inkorg</span></div>
         <div class="card-body">
-          <div class="field"><label>Datum</label><div class="val fill d1">18 nov 2026</div></div>
-          <div class="field"><label>Säljare</label><div class="val fill d2">Lyktans Krog</div></div>
-          <div class="field"><label>Projekt</label><div class="val fill d3">Reklamfilm Kustbryggeriet</div></div>
-          <div class="field"><label>Typ</label><div class="val fill d4">Måltid under inspelning</div></div>
-          <div class="split fill d5">
+          <p class="status fill d1"><span aria-hidden="true"></span>Avläst lokalt · säker</p>
+          <div class="field"><label>Säljare</label><div class="val fill d1">Lyktans Krog</div></div>
+          <div class="field"><label>Datum</label><div class="val fill d2">2026-11-18</div></div>
+          <div class="field"><label>Belopp</label><div class="val fill d3"><b>563,00</b></div></div>
+          <div class="split fill d4">
             <div class="row"><span>Mat <small>moms 12 %</small></span><span>405,00 kr</span></div>
             <div class="row"><span>Dryck <small>moms 25 %</small></span><span>158,00 kr</span></div>
           </div>
+          <div class="field"><label>Typ</label><div class="val fill d5">Måltid</div></div>
+          <div class="field"><label>Projekt</label><div class="val fill d5">7001 Kustbryggeriet</div></div>
           <div class="rebill fill d6"><span><span class="tag">2 utlägg</span>&nbsp; Vidarefakturera kunden</span><span class="switch" aria-hidden="true"></span></div>
-          <div class="btn btn-create fill d7">Skapa utlägg</div>
+          <div class="btn btn-create fill d7">Skapa utlägg <span aria-hidden="true" style="opacity:.75">⏎</span></div>
         </div>
       </div>
 
@@ -457,25 +463,12 @@
 
     <article class="reason">
       <div class="copy">
-        <h3>Från offert till betald faktura, på ett ställe.</h3>
-        <p>Offerten blir en faktura med ett klick. Tid, utlägg och fakturor samlas per uppdrag, så du ser vad jobbet faktiskt gav – inte bara vad du fakturerade.</p>
+        <h3>Du ser direkt vad som väntar.</h3>
+        <p>Översikten samlar det som behöver göras: belopp som är redo att faktureras, fakturor som har förfallit och kvitton att granska. Offerten blir en faktura med ett klick, och tid, utlägg och fakturor samlas per uppdrag.</p>
       </div>
-      <div>
-        <div class="flow">
-          <div class="step"><b>Offert</b><small>Godkänd 4 nov</small></div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m0 0-5-5m5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div class="step"><b>Projekt</b><small>3 dagar, 6 utlägg</small></div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m0 0-5-5m5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div class="step now"><b>Faktura</b><small>Skickad, förfaller 18 dec</small></div>
-        </div>
-        <div class="shot" style="margin-top:16px">
-          <div class="t">Reklamfilm Kustbryggeriet <small>Projektöversikt</small></div>
-          <div class="ln"><span>Offert</span><span>48 000 kr</span></div>
-          <div class="ln"><span>Utlägg att vidarefakturera</span><span>3 912 kr</span></div>
-          <div class="ln"><span>Egna kostnader</span><span class="m">−2 140 kr</span></div>
-          <div class="total"><span>Jobbet gav</span><span>49 772 kr</span></div>
-        </div>
-      </div>
+      <figure class="screen" style="margin:0">
+        <img src="bilder/app-oversikt.jpg" alt="Översikten i PocketWiz med belopp att fakturera och förfallna fakturor" loading="lazy">
+      </figure>
     </article>
 
     <article class="reason">
@@ -531,7 +524,7 @@
         <div class="ln"><span>Rapporter</span><span class="tg" aria-label="av"></span></div>
       </div>
     </article>
-    <div class="why"><b>Varför så här:</b> Rubrikerna säger vad kunden får, inte vad funktionen heter. Bilderna visar riktiga gränssnitt: i ett test ökade provregistreringarna med 96 % när en illustration byttes mot skärmbilder av produkten. Byt våra ritade exempel mot riktiga skärmbilder ur appen (testläget) innan lansering. Siffrorna i exemplen är påhittade. <a href="https://conversion-rate-experts.com/statuscake-landing-page-win-report/" target="_blank" rel="noopener">Källa</a></div>
+    <div class="why"><b>Varför så här:</b> Rubrikerna säger vad kunden får, inte vad funktionen heter. Bilderna visar riktiga gränssnitt: i ett test ökade provregistreringarna med 96 % när en illustration byttes mot skärmbilder av produkten. Översikten och inkorgen är nu riktiga skärmbilder ur testläget. Fakturan är fortfarande ritad, eftersom den riktiga visar testlägets markering. Siffrorna i exemplen är påhittade. <a href="https://conversion-rate-experts.com/statuscake-landing-page-win-report/" target="_blank" rel="noopener">Källa</a></div>
   </div>
 </section>
 
@@ -544,6 +537,10 @@
       <li><h3>Kontrollera</h3><p>Datum, säljare, belopp, moms och typ är redan ifyllda. Även utländska kvitton och flera momssatser.</p></li>
       <li><h3>Klicka Skapa</h3><p>Utlägget sparas med kvittot bifogat, sorterat per år och kopplat till rätt projekt.</p></li>
     </ol>
+    <figure class="screen" style="margin:64px 0 0">
+      <img src="bilder/app-inkorg-morkt.jpg" alt="Inkorgen i PocketWiz i mörkt läge: kvittot till vänster, ifyllda uppgifter till höger" loading="lazy">
+      <figcaption>Kvittot och uppgifterna sida vid sida, med ett enda fält kvar att välja. Ljust eller mörkt läge, precis som din Mac.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -598,7 +595,7 @@
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5 9-10" stroke-linecap="round" stroke-linejoin="round"/></svg>Fakturor, offerter, utlägg, projekt och rapporter</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5 9-10" stroke-linecap="round" stroke-linejoin="round"/></svg>Kvittoavläsning på datorn utan extra kostnad</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5 9-10" stroke-linecap="round" stroke-linejoin="round"/></svg>Import från Fortnox eller CSV</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5 9-10" stroke-linecap="round" stroke-linejoin="round"/></svg>Import från Fortnox eller CSV, export till revisorn som SIE-fil</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5 9-10" stroke-linecap="round" stroke-linejoin="round"/></svg>Alla uppdateringar och mejlsupport</li>
         </ul>
         <a class="btn" href="#pris">
@@ -629,7 +626,7 @@
       <div class="why"><b>Varför så här:</b> Frågorna är de invändningar en köpare har sista sekunden. Vi är ärliga om begränsningarna (bara Mac, ingen bokföring), så att rätt kunder köper och färre hör av sig till supporten.</div>
     </div>
     <div>
-      <details open><summary>Måste jag byta bokföringsprogram?</summary><p>Nej. PocketWiz sköter fakturor, offerter, kvitton och utlägg – det som kommer före bokföringen. Bokföring och momsdeklaration gör du eller din redovisningskonsult som vanligt. Rapporterna går att exportera till Excel.</p></details>
+      <details open><summary>Måste jag byta bokföringsprogram?</summary><p>Nej. PocketWiz sköter fakturor, offerter, kvitton och utlägg – det som kommer före bokföringen. Bokföring och momsdeklaration gör du eller din redovisningskonsult som vanligt. Med Exportera till revisorn får du en mapp med Excel, CSV och en SIE-fil som din redovisningskonsult kan läsa in direkt.</p></details>
       <details><summary>Var finns min data?</summary><p>I mappen PocketWiz på din egen Mac. Vi har inget molnkonto och ser aldrig dina siffror. Du får dagliga säkerhetskopior på datorn och kan själv välja att även spara en kopia i din Google Drive.</p></details>
       <details><summary>Behöver jag AI för att läsa kvitton?</summary><p>Nej. Avläsningen på datorn är gratis och fungerar utan internet. Vill du ha högre träffsäkerhet på suddiga foton kan du koppla på Claude, ChatGPT eller Gemini med en egen nyckel. Då skickas bara kvittobilden till tjänsten du har valt.</p></details>
       <details><summary>Vilka datorer fungerar den på?</summary><p>Mac med Apple-chip, M1 eller senare. Det finns ingen version för Windows eller äldre Intel-Mac, och ingen mobilapp än. Med mobilen fotar du kvittot och mejlar det till din inkorg.</p></details>
